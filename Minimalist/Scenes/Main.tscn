@@ -1,0 +1,152 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Scenes/Floor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Red.shader" type="Shader" id=3]
+[ext_resource path="res://Assets/Sprites/icon.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Blue.shader" type="Shader" id=5]
+[ext_resource path="res://Scenes/RedBlue.shader" type="Shader" id=6]
+[ext_resource path="res://Scenes/Green.shader" type="Shader" id=7]
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/BlueGreen.shader" type="Shader" id=9]
+[ext_resource path="res://Scenes/RedGreen.shader" type="Shader" id=10]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Camera2D.gd" type="Script" id=12]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 9 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 10 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 7 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 5 )
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+void fragment()
+{
+	vec4 temp = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);
+
+	float avg = (temp.r + temp.g + temp.b) / 3.0;
+	COLOR.rgb = vec3(avg); 
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 3 )
+
+[sub_resource type="StreamTexture" id=9]
+flags = 4
+load_path = "res://.import/icon.png-1ada42475fe106c59fb9885a73678c1a.stex"
+
+[sub_resource type="GDScript" id=10]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Shaders" type="Node" parent="."]
+
+[node name="BlueGreenShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 1 )
+position = Vector2( 497.422, 289.769 )
+scale = Vector2( 16.5444, 10.0553 )
+texture = ExtResource( 4 )
+
+[node name="RedBlueShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 2 )
+position = Vector2( 511.661, 303.031 )
+scale = Vector2( 16.0445, 9.44602 )
+texture = ExtResource( 4 )
+
+[node name="RedGreenShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 3 )
+position = Vector2( 506.86, 301.096 )
+scale = Vector2( 16.0725, 9.46537 )
+texture = ExtResource( 4 )
+
+[node name="GreenShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 4 )
+position = Vector2( 513.158, 302.015 )
+scale = Vector2( 16.0896, 9.49138 )
+texture = ExtResource( 4 )
+
+[node name="BlueShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 5 )
+position = Vector2( 511.376, 301.124 )
+scale = Vector2( 16.0339, 9.40786 )
+texture = ExtResource( 4 )
+
+[node name="GreyscaleShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 7 )
+position = Vector2( 496.128, 285.105 )
+scale = Vector2( 16.504, 9.90954 )
+texture = ExtResource( 4 )
+
+[node name="RedShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 8 )
+position = Vector2( 511.022, 288.489 )
+scale = Vector2( 16.0099, 9.40245 )
+texture = SubResource( 9 )
+script = SubResource( 10 )
+
+[node name="WallsAndFloors" type="Node" parent="."]
+
+[node name="RightWall" parent="WallsAndFloors" instance=ExtResource( 2 )]
+position = Vector2( 1050.68, 310.014 )
+scale = Vector2( 1, 18 )
+
+[node name="LeftWall" parent="WallsAndFloors" instance=ExtResource( 2 )]
+position = Vector2( 14.2735, 212.076 )
+scale = Vector2( 1, 18 )
+
+[node name="Floor" parent="WallsAndFloors" instance=ExtResource( 2 )]
+position = Vector2( 551.523, 616.682 )
+scale = Vector2( 32, 1 )
+
+[node name="Floor6" parent="WallsAndFloors" instance=ExtResource( 2 )]
+position = Vector2( -226.216, 584.155 )
+scale = Vector2( 32, 1 )
+
+[node name="Floor2" parent="WallsAndFloors" instance=ExtResource( 2 )]
+position = Vector2( 138.995, 552.513 )
+
+[node name="Floor3" parent="WallsAndFloors" instance=ExtResource( 2 )]
+position = Vector2( 153.631, 456.702 )
+
+[node name="Floor4" parent="WallsAndFloors" instance=ExtResource( 2 )]
+position = Vector2( 139.929, 488.962 )
+
+[node name="Floor5" parent="WallsAndFloors" instance=ExtResource( 2 )]
+position = Vector2( 153.755, 520.692 )
+
+[node name="Player" parent="." instance=ExtResource( 11 )]
+position = Vector2( 60.2161, 540.398 )
+
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
+position = Vector2( -0.920288, 2.06494 )
+scale = Vector2( 10, 10 )
+current = true
+zoom = Vector2( 0.5, 0.5 )
+limit_left = -1024
+limit_top = 0
+limit_right = 1024
+limit_bottom = 600
+limit_smoothed = true
+script = ExtResource( 12 )
