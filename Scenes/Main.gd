@@ -5,8 +5,9 @@ var green = false
 var blue = false
 var count = 0
 
+
 func _process(_delta):
-	
+		
 	#count += 1
 	#print(count)
 	
@@ -102,3 +103,9 @@ func _process(_delta):
 		$Shaders/RedBlueShader.visible = false
 		$Shaders/RedGreenShader.visible = false
 		$Shaders/BlueGreenShader.visible = false
+
+func red_coin_hit():
+	red = true
+
+func _on_RedThing_redsignal():
+	red_coin_hit()
