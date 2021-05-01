@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Scenes/RedThing.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Floor.tscn" type="PackedScene" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://Shaders/Green.shader" type="Shader" id=7]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=8]
 [ext_resource path="res://Shaders/BlueGreen.shader" type="Shader" id=9]
-[ext_resource path="res://RedGreen.shader" type="Shader" id=10]
+[ext_resource path="res://Shaders/RedGreen.shader" type="Shader" id=10]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/BlueThing.tscn" type="PackedScene" id=13]
@@ -17,9 +17,15 @@
 [ext_resource path="res://Assets/Audio/MinJamDrums.ogg" type="AudioStream" id=15]
 [ext_resource path="res://Assets/Audio/MinJamMelodyFinal.ogg" type="AudioStream" id=16]
 [ext_resource path="res://Scenes/GreenThing.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Scenes/Melody.gd" type="Script" id=18]
-[ext_resource path="res://Scenes/Harmony.gd" type="Script" id=19]
-[ext_resource path="res://Scenes/Drums.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/Melody.gd" type="Script" id=18]
+[ext_resource path="res://Scripts/Harmony.gd" type="Script" id=19]
+[ext_resource path="res://Scripts/Drums.gd" type="Script" id=20]
+[ext_resource path="res://Assets/Sprites/backgroundtest.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/mountainBG.png" type="Texture" id=22]
+[ext_resource path="res://Scenes/Wall.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Assets/Sprites/redflower.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Sprites/blueflower.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Sprites/rainbow.png" type="Texture" id=26]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 9 )
@@ -63,178 +69,60 @@ load_path = "res://.import/icon.png-1ada42475fe106c59fb9885a73678c1a.stex"
 [node name="Main" type="Node2D"]
 script = ExtResource( 8 )
 
-[node name="Shaders" type="Node" parent="."]
+[node name="background" type="ParallaxBackground" parent="."]
+layer = -1
 
-[node name="BlueGreenShader" type="Sprite" parent="Shaders"]
-visible = false
-material = SubResource( 1 )
-position = Vector2( 8.36374, 14.792 )
-scale = Vector2( 31.8275, 18.6483 )
-texture = ExtResource( 4 )
+[node name="staticSky" type="ParallaxLayer" parent="background"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
-[node name="RedBlueShader" type="Sprite" parent="Shaders"]
-visible = false
-material = SubResource( 2 )
-position = Vector2( 7.79181, 10.6746 )
-scale = Vector2( 31.7904, 18.5822 )
-texture = ExtResource( 4 )
+[node name="SkySprite" type="Sprite" parent="background/staticSky"]
+z_index = -2
+texture = ExtResource( 21 )
 
-[node name="RedGreenShader" type="Sprite" parent="Shaders"]
-visible = false
-material = SubResource( 3 )
-position = Vector2( 5.53235, 11.0167 )
-scale = Vector2( 31.739, 18.5303 )
-texture = ExtResource( 4 )
+[node name="Mountains" type="ParallaxLayer" parent="background"]
+motion_scale = Vector2( 1.05, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
-[node name="GreenShader" type="Sprite" parent="Shaders"]
-visible = false
-material = SubResource( 4 )
-position = Vector2( 9.58725, 10.8923 )
-scale = Vector2( 31.8262, 18.589 )
-texture = ExtResource( 4 )
+[node name="MountainSprite" type="Sprite" parent="background/Mountains"]
+position = Vector2( 554.153, -40.1799 )
+texture = ExtResource( 22 )
+offset = Vector2( 0, 400 )
 
-[node name="BlueShader" type="Sprite" parent="Shaders"]
-visible = false
-material = SubResource( 5 )
-position = Vector2( 7.17273, 10.1105 )
-scale = Vector2( 31.7903, 18.502 )
-texture = ExtResource( 4 )
+[node name="MountainSprite4" type="Sprite" parent="background/Mountains"]
+position = Vector2( 1193.53, -41.8617 )
+texture = ExtResource( 22 )
+offset = Vector2( 0, 400 )
 
-[node name="GreyscaleShader" type="Sprite" parent="Shaders"]
-visible = false
-material = SubResource( 7 )
-position = Vector2( 7.07025, 10.1279 )
-scale = Vector2( 31.7871, 18.5026 )
-texture = ExtResource( 4 )
+[node name="MountainSprite2" type="Sprite" parent="background/Mountains"]
+position = Vector2( -84.8252, -38.8094 )
+texture = ExtResource( 22 )
+offset = Vector2( 0, 400 )
 
-[node name="RedShader" type="Sprite" parent="Shaders"]
-visible = false
-material = SubResource( 8 )
-position = Vector2( 7.24414, 3.70645 )
-scale = Vector2( 31.753, 18.3019 )
-texture = SubResource( 9 )
-script = SubResource( 10 )
+[node name="MountainSprite3" type="Sprite" parent="background/Mountains"]
+position = Vector2( -724.774, -37.7976 )
+texture = ExtResource( 22 )
+offset = Vector2( 0, 400 )
 
-[node name="RedThing" parent="Shaders" instance=ExtResource( 1 )]
+[node name="MountainSprite5" type="Sprite" parent="background/Mountains"]
+position = Vector2( -1365, -37.5141 )
+texture = ExtResource( 22 )
+offset = Vector2( 0, 400 )
 
-[node name="WallsAndFloors" type="Node" parent="."]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="background"]
+z_index = -1
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="RightWall" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( 1010.68, 312.308 )
-scale = Vector2( 1, 18 )
-
-[node name="RightWall2" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( 1010.68, -261.986 )
-scale = Vector2( 1, 18 )
-
-[node name="LeftWall" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -1008.85, 312.308 )
-scale = Vector2( 1, 18 )
-
-[node name="LeftWall4" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -1008.85, -264.149 )
-scale = Vector2( 1, 18 )
-
-[node name="LeftWall2" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -75.7928, 885.785 )
-scale = Vector2( 1, 18 )
-
-[node name="LeftWall3" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( 202.745, 885.785 )
-scale = Vector2( 1, 18 )
-
-[node name="Floor" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( 699.549, 588.012 )
-scale = Vector2( 32, 1 )
-
-[node name="Floor6" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -572.85, 590.233 )
-scale = Vector2( 32, 1 )
-
-[node name="Floor9" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -496.851, -567.955 )
-scale = Vector2( 32, 1 )
-
-[node name="Floor10" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( 529.149, -565.955 )
-scale = Vector2( 32, 1 )
-
-[node name="Floor7" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -1477.29, 590.233 )
-scale = Vector2( 32, 1 )
-
-[node name="Floor23" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -44.7928, 590.233 )
-
-[node name="Floor28" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( 55.1494, 652.084 )
-scale = Vector2( 9, 1 )
-
-[node name="Floor11" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -801.456, 559.186 )
-
-[node name="Floor12" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -769.992, 559.186 )
-
-[node name="Floor14" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -769.992, 532.216 )
-
-[node name="Floor13" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -740.774, 559.186 )
-
-[node name="Floor15" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -643.384, 541.771 )
-scale = Vector2( 1, 2 )
-
-[node name="Floor21" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -165.447, 559.186 )
-scale = Vector2( 3, 1 )
-
-[node name="Floor18" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( -471.85, 532.216 )
-scale = Vector2( 1, 3 )
-
-[node name="Floor24" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( 330.874, 556.65 )
-scale = Vector2( 4, 1 )
-
-[node name="Floor26" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( 594.423, 405.234 )
-scale = Vector2( 4, 1 )
-
-[node name="Floor27" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( 886.638, 405.234 )
-scale = Vector2( 7, 1 )
-
-[node name="Floor25" parent="WallsAndFloors" instance=ExtResource( 2 )]
-position = Vector2( 394.874, 524.65 )
-scale = Vector2( 4, 3 )
-
-[node name="Player" parent="." instance=ExtResource( 11 )]
-position = Vector2( -938.35, 540.65 )
-
-[node name="PlayerCamera" type="Camera2D" parent="Player"]
-position = Vector2( 0.967346, 1.12103 )
-scale = Vector2( 10, 10 )
-current = true
-zoom = Vector2( 0.5, 0.5 )
-limit_left = -1024
-limit_top = -600
-limit_right = 1024
-limit_bottom = 600
-limit_smoothed = true
-script = ExtResource( 12 )
-
-[node name="Switches" type="Node" parent="."]
-
-[node name="BlueThing" parent="Switches" instance=ExtResource( 13 )]
-position = Vector2( -471.85, 447.444 )
-
-[node name="GreenThing" parent="Switches" instance=ExtResource( 17 )]
-position = Vector2( -145.973, 516.216 )
-
-[node name="RedThing" parent="Switches" instance=ExtResource( 1 )]
-position = Vector2( -643.384, 484.216 )
+[node name="Sprite" type="Sprite" parent="background/ParallaxLayer"]
+z_index = -1
+texture = ExtResource( 26 )
 
 [node name="Music" type="Node" parent="."]
 
@@ -261,9 +149,2223 @@ bus = "DrumsBus"
 script = ExtResource( 20 )
 
 [node name="DrumsTween" type="Tween" parent="Music/Drums"]
+
+[node name="Switches" type="Node" parent="."]
+
+[node name="BlueThing" parent="Switches" instance=ExtResource( 13 )]
+show_behind_parent = true
+position = Vector2( -880, -168 )
+z_index = 2
+z_as_relative = false
+
+[node name="GreenThing" parent="Switches" instance=ExtResource( 17 )]
+position = Vector2( 832, -304 )
+z_index = 2
+
+[node name="RedThing" parent="Switches" instance=ExtResource( 1 )]
+position = Vector2( 864, 352 )
+z_index = 2
+
+[node name="Player" parent="." instance=ExtResource( 11 )]
+position = Vector2( -912, 528 )
+
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
+visible = false
+position = Vector2( 3.15405, -6.10352e-05 )
+scale = Vector2( 10, 10 )
+current = true
+zoom = Vector2( 0.4, 0.4 )
+limit_left = -1024
+limit_top = -600
+limit_right = 1024
+limit_bottom = 600
+limit_smoothed = true
+script = ExtResource( 12 )
+
+[node name="TweenCam" type="Tween" parent="Player/PlayerCamera"]
+
+[node name="Shaders" type="Node" parent="."]
+
+[node name="BlueGreenShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 1 )
+position = Vector2( 24, 32 )
+scale = Vector2( 36.748, 22.8419 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 4 )
+
+[node name="RedBlueShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 2 )
+position = Vector2( 13.3427, 38.9873 )
+scale = Vector2( 37.4439, 22.8419 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 4 )
+
+[node name="RedGreenShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 3 )
+position = Vector2( 13.3427, 38.9872 )
+scale = Vector2( 37.4439, 22.8419 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 4 )
+
+[node name="GreenShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 4 )
+position = Vector2( 13.3428, 38.9873 )
+scale = Vector2( 37.4439, 22.8419 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 4 )
+
+[node name="BlueShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 5 )
+position = Vector2( -28.7928, 24.308 )
+scale = Vector2( 37.5355, 23.6422 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 4 )
+
+[node name="GreyscaleShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 7 )
+position = Vector2( 19.9969, 33.9411 )
+scale = Vector2( 39.0602, 24.8666 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 4 )
+
+[node name="RedShader" type="Sprite" parent="Shaders"]
+visible = false
+material = SubResource( 8 )
+position = Vector2( -9.87263, 0 )
+scale = Vector2( 38.9364, 25.7134 )
+z_index = 1
+texture = SubResource( 9 )
+script = SubResource( 10 )
+
+[node name="Floors" type="Node" parent="."]
+
+[node name="Floor19" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -424, 584 )
+
+[node name="Floor34" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 48, 584 )
+
+[node name="Floor48" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 496, 584 )
+
+[node name="Floor63" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 976, 584 )
+
+[node name="Floor62" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 944, 584 )
+
+[node name="Floor61" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 912, 584 )
+
+[node name="Floor60" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 880, 584 )
+
+[node name="Floor59" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 848, 584 )
+
+[node name="Floor58" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 816, 584 )
+
+[node name="Floor57" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 784, 584 )
+
+[node name="Floor56" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 752, 584 )
+
+[node name="Floor54" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 688, 584 )
+
+[node name="Floor55" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 720, 584 )
+
+[node name="Floor53" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 656, 584 )
+
+[node name="Floor52" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 624, 584 )
+
+[node name="Floor51" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 592, 584 )
+
+[node name="Floor50" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 560, 584 )
+
+[node name="Floor49" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 528, 584 )
+
+[node name="Floor47" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 464, 584 )
+
+[node name="Floor46" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 432, 584 )
+
+[node name="Floor45" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 400, 584 )
+
+[node name="Floor44" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 368, 584 )
+
+[node name="Floor43" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 336, 584 )
+
+[node name="Floor42" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 304, 584 )
+
+[node name="Floor40" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 240, 584 )
+
+[node name="Floor41" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 272, 584 )
+
+[node name="Floor39" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 208, 584 )
+
+[node name="Floor38" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 176, 584 )
+
+[node name="Floor37" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 144, 584 )
+
+[node name="Floor36" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 112, 584 )
+
+[node name="Floor35" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 80, 584 )
+
+[node name="Floor33" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 16, 584 )
+
+[node name="Floor32" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -8, 584 )
+
+[node name="Floor31" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -40, 584 )
+
+[node name="Floor30" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -72, 584 )
+
+[node name="Floor29" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -104, 584 )
+
+[node name="Floor28" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -136, 584 )
+
+[node name="Floor27" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -168, 584 )
+
+[node name="Floor26" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -200, 584 )
+
+[node name="Floor25" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -232, 584 )
+
+[node name="Floor24" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -264, 584 )
+
+[node name="Floor23" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -296, 584 )
+
+[node name="Floor22" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -328, 584 )
+
+[node name="Floor21" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -360, 584 )
+
+[node name="Floor20" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -392, 584 )
+
+[node name="Floor18" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -456, 584 )
+
+[node name="Floor17" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -488, 584 )
+
+[node name="Floor16" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -520, 584 )
+
+[node name="Floor15" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -552, 584 )
+
+[node name="Floor14" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -584, 584 )
+
+[node name="Floor11" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -680, 584 )
+
+[node name="Floor10" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -712, 584 )
+
+[node name="Floor9" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -744, 584 )
+
+[node name="Floor8" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -776, 584 )
+
+[node name="Floor7" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -808, 584 )
+
+[node name="Floor6" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -840, 584 )
+
+[node name="Floor5" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -872, 584 )
+
+[node name="Floor4" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -904, 584 )
+
+[node name="Floor3" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -936, 584 )
+
+[node name="Floor2" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -968, 584 )
+
+[node name="Floor" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -968, -24 )
+
+[node name="Floor64" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -936, -24 )
+
+[node name="Floor65" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -904, -24 )
+
+[node name="Floor66" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -872, -24 )
+
+[node name="Floor67" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -840, -24 )
+
+[node name="Floor68" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -808, -24 )
+
+[node name="Floor69" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -776, -24 )
+
+[node name="Floor70" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -745.577, -24 )
+
+[node name="Floor71" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -713.472, 11.101 )
+
+[node name="Floor72" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -680, 40 )
+
+[node name="Floor73" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -648, 72 )
+
+[node name="Floor74" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -616, 104 )
+
+[node name="Floor75" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -584, 136 )
+
+[node name="Floor76" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -552, 168 )
+
+[node name="Floor77" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -480, 208 )
+
+[node name="Floor87" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -416, 520 )
+
+[node name="Floor88" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -384, 496 )
+
+[node name="Floor154" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -352, 472 )
+
+[node name="Floor160" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -304, 472 )
+
+[node name="Floor165" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -248, 472 )
+
+[node name="Floor166" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -184, 472 )
+
+[node name="Floor167" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -152, 472 )
+
+[node name="Floor168" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -80, 472 )
+
+[node name="Floor169" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -48, 472 )
+
+[node name="Floor170" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -16, 496 )
+
+[node name="Floor171" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 16, 496 )
+
+[node name="Floor172" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 80, 520 )
+
+[node name="Floor173" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 48, 520 )
+
+[node name="Floor80" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -512, 240 )
+
+[node name="Floor81" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -568, 272 )
+
+[node name="Floor82" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -624, 304 )
+
+[node name="Floor83" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -680, 336 )
+
+[node name="Floor84" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -736, 368 )
+
+[node name="Floor85" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -792, 416 )
+
+[node name="Floor86" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -736, 448 )
+
+[node name="Floor119" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -632, 520 )
+
+[node name="Floor89" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -696, 488 )
+
+[node name="Floor78" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -448, 208 )
+
+[node name="Floor79" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -416, 208 )
+
+[node name="Floor90" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 976, 456 )
+
+[node name="Floor91" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 944, 456 )
+
+[node name="Floor92" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 827.757, 455.646 )
+
+[node name="Floor93" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 912, 456 )
+
+[node name="Floor94" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 880, 456 )
+
+[node name="Floor95" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 856, 456 )
+
+[node name="Floor96" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 616, 456 )
+
+[node name="Floor102" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 720, 456 )
+
+[node name="Floor97" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 512, 456 )
+
+[node name="Floor98" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 432, 456 )
+
+[node name="Floor99" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 400, 456 )
+
+[node name="Floor100" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 296, 552 )
+
+[node name="Floor101" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 352, 512 )
+
+[node name="Floor103" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 976, 392 )
+
+[node name="Floor104" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 912, 352 )
+
+[node name="Floor105" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 976, 304 )
+
+[node name="Floor106" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 912, 256 )
+
+[node name="Floor107" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 976, 200 )
+
+[node name="Floor108" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 976, 104 )
+
+[node name="Floor109" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 976, 8 )
+
+[node name="Floor110" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 976, -88 )
+
+[node name="Floor111" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 976, -184 )
+
+[node name="Floor116" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 912, -232 )
+
+[node name="Floor117" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 880, -232 )
+
+[node name="Floor118" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 848, -232 )
+
+[node name="Floor120" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 816, -232 )
+
+[node name="Floor121" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 784, -232 )
+
+[node name="Floor122" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 752, -232 )
+
+[node name="Floor123" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 648, -232 )
+
+[node name="Floor124" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 616, -232 )
+
+[node name="Floor125" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 584, -232 )
+
+[node name="Floor126" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 552, -248 )
+
+[node name="Floor127" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 520, -248 )
+
+[node name="Floor128" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 488, -248 )
+
+[node name="Floor129" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 456, -264 )
+
+[node name="Floor130" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 424, -264 )
+
+[node name="Floor131" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 392, -264 )
+
+[node name="Floor132" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 360, -280 )
+
+[node name="Floor133" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 328, -280 )
+
+[node name="Floor134" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 296, -280 )
+
+[node name="Floor135" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 264, -296 )
+
+[node name="Floor136" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 232, -296 )
+
+[node name="Floor137" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 200, -296 )
+
+[node name="Floor138" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 168, -296 )
+
+[node name="Floor139" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 136, -296 )
+
+[node name="Floor140" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 104, -296 )
+
+[node name="Floor150" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -328, -400 )
+
+[node name="Floor151" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -360, -400 )
+
+[node name="Floor152" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -392, -400 )
+
+[node name="Floor153" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -424, -400 )
+
+[node name="Floor141" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 32, -328 )
+
+[node name="Floor142" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 0, -328 )
+
+[node name="Floor143" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -32, -328 )
+
+[node name="Floor144" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -136, -328 )
+
+[node name="Floor145" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -200, -352 )
+
+[node name="Floor146" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -168, -328 )
+
+[node name="Floor147" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -232, -376 )
+
+[node name="Floor148" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -296, -400 )
+
+[node name="Floor155" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -520, -400 )
+
+[node name="Floor156" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -544, -400 )
+
+[node name="Floor157" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -576, -400 )
+
+[node name="Floor158" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -608, -400 )
+
+[node name="Floor159" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -640, -400 )
+
+[node name="Floor161" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -672, -400 )
+
+[node name="Floor162" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -704, -400 )
+
+[node name="Floor163" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -736, -400 )
+
+[node name="Floor164" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -768, -400 )
+
+[node name="Floor149" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -264, -376 )
+
+[node name="Floor112" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 912, -136 )
+
+[node name="Floor113" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 912, -40 )
+
+[node name="Floor114" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 912, 56 )
+
+[node name="Floor115" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 912, 152 )
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Wall" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 584 )
+
+[node name="Wall2" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 552 )
+
+[node name="Wall3" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 520 )
+
+[node name="Wall4" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 488 )
+
+[node name="Wall5" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -648, 584 )
+
+[node name="Wall249" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -616, 584 )
+
+[node name="Wall250" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -616, 552 )
+
+[node name="Wall251" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -648, 552 )
+
+[node name="Wall6" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 488 )
+
+[node name="Wall7" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 456 )
+
+[node name="Wall8" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 424 )
+
+[node name="Wall9" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 392 )
+
+[node name="Wall10" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 360 )
+
+[node name="Wall11" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 392 )
+
+[node name="Wall12" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 360 )
+
+[node name="Wall13" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 328 )
+
+[node name="Wall14" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 296 )
+
+[node name="Wall15" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 264 )
+
+[node name="Wall16" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 232 )
+
+[node name="Wall17" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 264 )
+
+[node name="Wall18" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 232 )
+
+[node name="Wall19" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 200 )
+
+[node name="Wall20" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 168 )
+
+[node name="Wall21" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 136 )
+
+[node name="Wall22" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 104 )
+
+[node name="Wall23" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 136 )
+
+[node name="Wall24" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 104 )
+
+[node name="Wall25" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 72 )
+
+[node name="Wall26" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 40 )
+
+[node name="Wall27" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 8 )
+
+[node name="Wall28" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -24 )
+
+[node name="Wall29" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, 8 )
+
+[node name="Wall30" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -24 )
+
+[node name="Wall31" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -56 )
+
+[node name="Wall32" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -88 )
+
+[node name="Wall33" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -120 )
+
+[node name="Wall34" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -152 )
+
+[node name="Wall35" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -120 )
+
+[node name="Wall36" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -152 )
+
+[node name="Wall37" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -184 )
+
+[node name="Wall38" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -216 )
+
+[node name="Wall39" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -248 )
+
+[node name="Wall40" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -280 )
+
+[node name="Wall41" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -248 )
+
+[node name="Wall42" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -280 )
+
+[node name="Wall43" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -312 )
+
+[node name="Wall44" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -344 )
+
+[node name="Wall45" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -376 )
+
+[node name="Wall46" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -408 )
+
+[node name="Wall47" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -376 )
+
+[node name="Wall48" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -408 )
+
+[node name="Wall49" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -440 )
+
+[node name="Wall50" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -472 )
+
+[node name="Wall51" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -504 )
+
+[node name="Wall52" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -536 )
+
+[node name="Wall53" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -504 )
+
+[node name="Wall54" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -536 )
+
+[node name="Wall55" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -568 )
+
+[node name="Wall56" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -600 )
+
+[node name="Wall57" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -568 )
+
+[node name="Wall58" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -600 )
+
+[node name="Wall59" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -568 )
+
+[node name="Wall60" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -600 )
+
+[node name="Wall61" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -568 )
+
+[node name="Wall62" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1000, -600 )
+
+[node name="Wall63" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 584 )
+
+[node name="Wall64" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 552 )
+
+[node name="Wall65" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 520 )
+
+[node name="Wall66" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 488 )
+
+[node name="Wall67" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 520 )
+
+[node name="Wall68" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 488 )
+
+[node name="Wall69" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 456 )
+
+[node name="Wall70" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 424 )
+
+[node name="Wall71" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 392 )
+
+[node name="Wall72" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 360 )
+
+[node name="Wall73" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 392 )
+
+[node name="Wall74" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 360 )
+
+[node name="Wall75" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 328 )
+
+[node name="Wall76" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 296 )
+
+[node name="Wall77" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 264 )
+
+[node name="Wall78" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 232 )
+
+[node name="Wall79" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 264 )
+
+[node name="Wall80" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 232 )
+
+[node name="Wall81" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 200 )
+
+[node name="Wall82" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 168 )
+
+[node name="Wall83" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 136 )
+
+[node name="Wall84" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 104 )
+
+[node name="Wall85" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 136 )
+
+[node name="Wall86" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 104 )
+
+[node name="Wall87" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 72 )
+
+[node name="Wall88" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 40 )
+
+[node name="Wall89" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 8 )
+
+[node name="Wall90" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -24 )
+
+[node name="Wall91" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, 8 )
+
+[node name="Wall92" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -24 )
+
+[node name="Wall93" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -56 )
+
+[node name="Wall94" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -88 )
+
+[node name="Wall95" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -120 )
+
+[node name="Wall96" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -152 )
+
+[node name="Wall97" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -120 )
+
+[node name="Wall98" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -152 )
+
+[node name="Wall99" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -184 )
+
+[node name="Wall100" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -216 )
+
+[node name="Wall101" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -248 )
+
+[node name="Wall102" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -280 )
+
+[node name="Wall103" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -248 )
+
+[node name="Wall104" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -280 )
+
+[node name="Wall105" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -312 )
+
+[node name="Wall106" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -344 )
+
+[node name="Wall107" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -376 )
+
+[node name="Wall108" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -408 )
+
+[node name="Wall109" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -376 )
+
+[node name="Wall110" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -408 )
+
+[node name="Wall111" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -440 )
+
+[node name="Wall112" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -472 )
+
+[node name="Wall113" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -504 )
+
+[node name="Wall114" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -536 )
+
+[node name="Wall115" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -504 )
+
+[node name="Wall116" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -536 )
+
+[node name="Wall117" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -568 )
+
+[node name="Wall118" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -600 )
+
+[node name="Wall119" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -568 )
+
+[node name="Wall120" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -600 )
+
+[node name="Wall121" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -568 )
+
+[node name="Wall122" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -600 )
+
+[node name="Wall123" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -568 )
+
+[node name="Wall124" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -1032, -600 )
+
+[node name="Wall125" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 584 )
+
+[node name="Wall126" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 552 )
+
+[node name="Wall127" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 520 )
+
+[node name="Wall128" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 488 )
+
+[node name="Wall129" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 520 )
+
+[node name="Wall130" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 488 )
+
+[node name="Wall131" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 456 )
+
+[node name="Wall132" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 424 )
+
+[node name="Wall133" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 392 )
+
+[node name="Wall134" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 360 )
+
+[node name="Wall135" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 392 )
+
+[node name="Wall136" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 360 )
+
+[node name="Wall137" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 328 )
+
+[node name="Wall138" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 296 )
+
+[node name="Wall139" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 264 )
+
+[node name="Wall140" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 232 )
+
+[node name="Wall141" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 264 )
+
+[node name="Wall142" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 232 )
+
+[node name="Wall143" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 200 )
+
+[node name="Wall144" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 168 )
+
+[node name="Wall145" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 136 )
+
+[node name="Wall146" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 104 )
+
+[node name="Wall147" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 136 )
+
+[node name="Wall148" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 104 )
+
+[node name="Wall149" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 72 )
+
+[node name="Wall150" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 40 )
+
+[node name="Wall151" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 8 )
+
+[node name="Wall152" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -24 )
+
+[node name="Wall153" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, 8 )
+
+[node name="Wall154" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -24 )
+
+[node name="Wall155" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -56 )
+
+[node name="Wall156" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -88 )
+
+[node name="Wall157" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -120 )
+
+[node name="Wall158" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -152 )
+
+[node name="Wall159" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -120 )
+
+[node name="Wall160" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -152 )
+
+[node name="Wall161" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -184 )
+
+[node name="Wall162" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -216 )
+
+[node name="Wall163" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -248 )
+
+[node name="Wall164" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -280 )
+
+[node name="Wall165" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -248 )
+
+[node name="Wall166" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -280 )
+
+[node name="Wall167" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -312 )
+
+[node name="Wall168" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -344 )
+
+[node name="Wall169" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -376 )
+
+[node name="Wall170" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -408 )
+
+[node name="Wall171" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -376 )
+
+[node name="Wall172" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -408 )
+
+[node name="Wall173" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -440 )
+
+[node name="Wall174" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -472 )
+
+[node name="Wall175" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -504 )
+
+[node name="Wall176" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -536 )
+
+[node name="Wall177" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -504 )
+
+[node name="Wall178" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -536 )
+
+[node name="Wall179" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -568 )
+
+[node name="Wall180" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -600 )
+
+[node name="Wall181" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -568 )
+
+[node name="Wall182" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -600 )
+
+[node name="Wall183" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -568 )
+
+[node name="Wall184" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -600 )
+
+[node name="Wall185" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -568 )
+
+[node name="Wall186" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1040, -600 )
+
+[node name="Wall187" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 584 )
+
+[node name="Wall188" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 552 )
+
+[node name="Wall189" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 520 )
+
+[node name="Wall190" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 488 )
+
+[node name="Wall191" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 520 )
+
+[node name="Wall192" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 488 )
+
+[node name="Wall193" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 456 )
+
+[node name="Wall194" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 424 )
+
+[node name="Wall195" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 392 )
+
+[node name="Wall196" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 360 )
+
+[node name="Wall197" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 392 )
+
+[node name="Wall198" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 360 )
+
+[node name="Wall199" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 328 )
+
+[node name="Wall200" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 296 )
+
+[node name="Wall201" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 264 )
+
+[node name="Wall202" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 232 )
+
+[node name="Wall203" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 264 )
+
+[node name="Wall204" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 232 )
+
+[node name="Wall205" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 200 )
+
+[node name="Wall206" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 168 )
+
+[node name="Wall207" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 136 )
+
+[node name="Wall208" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 104 )
+
+[node name="Wall209" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 136 )
+
+[node name="Wall210" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 104 )
+
+[node name="Wall211" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 72 )
+
+[node name="Wall212" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 40 )
+
+[node name="Wall213" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 8 )
+
+[node name="Wall214" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -24 )
+
+[node name="Wall215" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, 8 )
+
+[node name="Wall216" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -24 )
+
+[node name="Wall217" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -56 )
+
+[node name="Wall218" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -88 )
+
+[node name="Wall219" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -120 )
+
+[node name="Wall220" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -152 )
+
+[node name="Wall221" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -120 )
+
+[node name="Wall222" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -152 )
+
+[node name="Wall223" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -184 )
+
+[node name="Wall224" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -216 )
+
+[node name="Wall225" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -248 )
+
+[node name="Wall226" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -280 )
+
+[node name="Wall227" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -248 )
+
+[node name="Wall228" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -280 )
+
+[node name="Wall229" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -312 )
+
+[node name="Wall230" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -344 )
+
+[node name="Wall231" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -376 )
+
+[node name="Wall232" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -408 )
+
+[node name="Wall233" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -376 )
+
+[node name="Wall234" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -408 )
+
+[node name="Wall235" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -440 )
+
+[node name="Wall236" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -472 )
+
+[node name="Wall237" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -504 )
+
+[node name="Wall238" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -536 )
+
+[node name="Wall239" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -504 )
+
+[node name="Wall240" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -536 )
+
+[node name="Wall241" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -568 )
+
+[node name="Wall242" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -600 )
+
+[node name="Wall243" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -568 )
+
+[node name="Wall244" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -600 )
+
+[node name="Wall245" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -568 )
+
+[node name="Wall246" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -600 )
+
+[node name="Wall247" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -568 )
+
+[node name="Wall248" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( 1008, -600 )
+
+[node name="flowers" type="Node" parent="."]
+
+[node name="redflower" type="Sprite" parent="flowers"]
+position = Vector2( 544, 560 )
+texture = ExtResource( 24 )
+
+[node name="redflower2" type="Sprite" parent="flowers"]
+position = Vector2( 512, 432 )
+texture = ExtResource( 24 )
+
+[node name="redflower3" type="Sprite" parent="flowers"]
+position = Vector2( 25.2425, 559.344 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower4" type="Sprite" parent="flowers"]
+position = Vector2( 17.2422, 559.344 )
+texture = ExtResource( 24 )
+
+[node name="redflower5" type="Sprite" parent="flowers"]
+position = Vector2( 8.09454, 561.267 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower6" type="Sprite" parent="flowers"]
+position = Vector2( -8.45332, 559.344 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower7" type="Sprite" parent="flowers"]
+position = Vector2( -60.1784, 560.011 )
+texture = ExtResource( 24 )
+
+[node name="redflower8" type="Sprite" parent="flowers"]
+position = Vector2( -68.8547, 559.01 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower9" type="Sprite" parent="flowers"]
+position = Vector2( -78.5324, 561.012 )
+texture = ExtResource( 24 )
+
+[node name="redflower10" type="Sprite" parent="flowers"]
+position = Vector2( -7.79317, 560.288 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower11" type="Sprite" parent="flowers"]
+position = Vector2( -15.7934, 560.288 )
+texture = ExtResource( 24 )
+
+[node name="redflower12" type="Sprite" parent="flowers"]
+position = Vector2( -24.9412, 562.211 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower13" type="Sprite" parent="flowers"]
+position = Vector2( -41.489, 560.288 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower14" type="Sprite" parent="flowers"]
+position = Vector2( -93.2141, 560.955 )
+texture = ExtResource( 24 )
+
+[node name="redflower15" type="Sprite" parent="flowers"]
+position = Vector2( -101.89, 559.954 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower16" type="Sprite" parent="flowers"]
+position = Vector2( -111.568, 561.956 )
+texture = ExtResource( 24 )
+
+[node name="redflower17" type="Sprite" parent="flowers"]
+position = Vector2( 881.59, 558.951 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower18" type="Sprite" parent="flowers"]
+position = Vector2( 870.758, 558.479 )
+texture = ExtResource( 24 )
+
+[node name="redflower19" type="Sprite" parent="flowers"]
+position = Vector2( 862.082, 560.874 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower20" type="Sprite" parent="flowers"]
+position = Vector2( -8.45332, 559.344 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower21" type="Sprite" parent="flowers"]
+position = Vector2( -60.1784, 560.011 )
+texture = ExtResource( 24 )
+
+[node name="redflower59" type="Sprite" parent="flowers"]
+position = Vector2( -124.142, 560.403 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower60" type="Sprite" parent="flowers"]
+position = Vector2( -132.142, 560.403 )
+texture = ExtResource( 24 )
+
+[node name="redflower61" type="Sprite" parent="flowers"]
+position = Vector2( -141.29, 562.326 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower62" type="Sprite" parent="flowers"]
+position = Vector2( -157.838, 560.403 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower63" type="Sprite" parent="flowers"]
+position = Vector2( -209.563, 561.071 )
+texture = ExtResource( 24 )
+
+[node name="redflower64" type="Sprite" parent="flowers"]
+position = Vector2( -218.239, 560.07 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower65" type="Sprite" parent="flowers"]
+position = Vector2( -227.917, 562.072 )
+texture = ExtResource( 24 )
+
+[node name="redflower66" type="Sprite" parent="flowers"]
+position = Vector2( -157.177, 561.347 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower67" type="Sprite" parent="flowers"]
+position = Vector2( -165.178, 561.347 )
+texture = ExtResource( 24 )
+
+[node name="redflower68" type="Sprite" parent="flowers"]
+position = Vector2( -174.325, 563.27 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower69" type="Sprite" parent="flowers"]
+position = Vector2( -190.873, 561.347 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower70" type="Sprite" parent="flowers"]
+position = Vector2( -242.598, 562.015 )
+texture = ExtResource( 24 )
+
+[node name="redflower71" type="Sprite" parent="flowers"]
+position = Vector2( -251.275, 561.014 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower72" type="Sprite" parent="flowers"]
+position = Vector2( -260.952, 563.016 )
+texture = ExtResource( 24 )
+
+[node name="redflower73" type="Sprite" parent="flowers"]
+position = Vector2( -157.838, 560.403 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower74" type="Sprite" parent="flowers"]
+position = Vector2( -209.563, 561.071 )
+texture = ExtResource( 24 )
+
+[node name="redflower75" type="Sprite" parent="flowers"]
+position = Vector2( -276.704, 559.873 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower76" type="Sprite" parent="flowers"]
+position = Vector2( -284.705, 559.873 )
+texture = ExtResource( 24 )
+
+[node name="redflower77" type="Sprite" parent="flowers"]
+position = Vector2( -293.852, 561.796 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower78" type="Sprite" parent="flowers"]
+position = Vector2( -310.4, 559.873 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower79" type="Sprite" parent="flowers"]
+position = Vector2( -362.125, 560.541 )
+texture = ExtResource( 24 )
+
+[node name="redflower80" type="Sprite" parent="flowers"]
+position = Vector2( -370.802, 559.54 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower81" type="Sprite" parent="flowers"]
+position = Vector2( -380.479, 561.542 )
+texture = ExtResource( 24 )
+
+[node name="redflower82" type="Sprite" parent="flowers"]
+position = Vector2( -309.74, 560.817 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower83" type="Sprite" parent="flowers"]
+position = Vector2( -317.74, 560.817 )
+texture = ExtResource( 24 )
+
+[node name="redflower84" type="Sprite" parent="flowers"]
+position = Vector2( -326.888, 562.74 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower85" type="Sprite" parent="flowers"]
+position = Vector2( -343.436, 560.818 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower86" type="Sprite" parent="flowers"]
+position = Vector2( -395.161, 561.485 )
+texture = ExtResource( 24 )
+
+[node name="redflower87" type="Sprite" parent="flowers"]
+position = Vector2( -403.837, 560.484 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower88" type="Sprite" parent="flowers"]
+position = Vector2( -413.515, 562.486 )
+texture = ExtResource( 24 )
+
+[node name="redflower89" type="Sprite" parent="flowers"]
+position = Vector2( -310.4, 559.873 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower90" type="Sprite" parent="flowers"]
+position = Vector2( -362.125, 560.541 )
+texture = ExtResource( 24 )
+
+[node name="redflower91" type="Sprite" parent="flowers"]
+position = Vector2( -425.029, 559.873 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower92" type="Sprite" parent="flowers"]
+position = Vector2( -433.03, 559.873 )
+texture = ExtResource( 24 )
+
+[node name="redflower93" type="Sprite" parent="flowers"]
+position = Vector2( -442.177, 561.796 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower94" type="Sprite" parent="flowers"]
+position = Vector2( -458.725, 559.873 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower95" type="Sprite" parent="flowers"]
+position = Vector2( -510.45, 560.541 )
+texture = ExtResource( 24 )
+
+[node name="redflower96" type="Sprite" parent="flowers"]
+position = Vector2( -519.126, 559.54 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower97" type="Sprite" parent="flowers"]
+position = Vector2( -528.804, 561.542 )
+texture = ExtResource( 24 )
+
+[node name="redflower98" type="Sprite" parent="flowers"]
+position = Vector2( -458.065, 560.817 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower99" type="Sprite" parent="flowers"]
+position = Vector2( -466.065, 560.817 )
+texture = ExtResource( 24 )
+
+[node name="redflower100" type="Sprite" parent="flowers"]
+position = Vector2( -475.213, 562.74 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower101" type="Sprite" parent="flowers"]
+position = Vector2( -491.761, 560.818 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower102" type="Sprite" parent="flowers"]
+position = Vector2( -543.486, 561.485 )
+texture = ExtResource( 24 )
+
+[node name="redflower103" type="Sprite" parent="flowers"]
+position = Vector2( -552.162, 560.484 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower104" type="Sprite" parent="flowers"]
+position = Vector2( -561.84, 562.486 )
+texture = ExtResource( 24 )
+
+[node name="redflower105" type="Sprite" parent="flowers"]
+position = Vector2( -458.725, 559.873 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower106" type="Sprite" parent="flowers"]
+position = Vector2( -510.45, 560.541 )
+texture = ExtResource( 24 )
+
+[node name="redflower107" type="Sprite" parent="flowers"]
+position = Vector2( -575.473, 559.344 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower108" type="Sprite" parent="flowers"]
+position = Vector2( -583.473, 559.344 )
+texture = ExtResource( 24 )
+
+[node name="redflower109" type="Sprite" parent="flowers"]
+position = Vector2( -592.621, 561.267 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower111" type="Sprite" parent="flowers"]
+position = Vector2( -660.894, 560.011 )
+texture = ExtResource( 24 )
+
+[node name="redflower112" type="Sprite" parent="flowers"]
+position = Vector2( -668.94, 561.53 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower113" type="Sprite" parent="flowers"]
+position = Vector2( -679.248, 561.012 )
+texture = ExtResource( 24 )
+
+[node name="redflower114" type="Sprite" parent="flowers"]
+position = Vector2( -624, 496 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower118" type="Sprite" parent="flowers"]
+position = Vector2( -693.93, 560.955 )
+texture = ExtResource( 24 )
+
+[node name="redflower119" type="Sprite" parent="flowers"]
+position = Vector2( -702.606, 559.954 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower120" type="Sprite" parent="flowers"]
+position = Vector2( -712.284, 561.956 )
+texture = ExtResource( 24 )
+
+[node name="redflower121" type="Sprite" parent="flowers"]
+position = Vector2( -608, 528 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower122" type="Sprite" parent="flowers"]
+position = Vector2( -660.894, 560.011 )
+texture = ExtResource( 24 )
+
+[node name="redflower22" type="Sprite" parent="flowers"]
+position = Vector2( 771.919, 560.977 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower23" type="Sprite" parent="flowers"]
+position = Vector2( 783.95, 562.036 )
+texture = ExtResource( 24 )
+
+[node name="redflower24" type="Sprite" parent="flowers"]
+position = Vector2( 814.103, 555.176 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower25" type="Sprite" parent="flowers"]
+position = Vector2( 850.936, 558.951 )
+texture = ExtResource( 24 )
+
+[node name="redflower26" type="Sprite" parent="flowers"]
+position = Vector2( 763.919, 560.402 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower27" type="Sprite" parent="flowers"]
+position = Vector2( 833.736, 558.007 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower28" type="Sprite" parent="flowers"]
+position = Vector2( 822.597, 560.09 )
+texture = ExtResource( 24 )
+
+[node name="redflower29" type="Sprite" parent="flowers"]
+position = Vector2( 806.842, 558.617 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower30" type="Sprite" parent="flowers"]
+position = Vector2( 794.333, 560.148 )
+texture = ExtResource( 24 )
+
+[node name="redflower31" type="Sprite" parent="flowers"]
+position = Vector2( 983.528, 430.112 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower32" type="Sprite" parent="flowers"]
+position = Vector2( 975.528, 430.112 )
+texture = ExtResource( 24 )
+
+[node name="redflower33" type="Sprite" parent="flowers"]
+position = Vector2( 966.38, 432.035 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower34" type="Sprite" parent="flowers"]
+position = Vector2( 949.832, 430.112 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower35" type="Sprite" parent="flowers"]
+position = Vector2( 898.107, 430.78 )
+texture = ExtResource( 24 )
+
+[node name="redflower36" type="Sprite" parent="flowers"]
+position = Vector2( 889.431, 429.779 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower37" type="Sprite" parent="flowers"]
+position = Vector2( 879.753, 431.781 )
+texture = ExtResource( 24 )
+
+[node name="redflower38" type="Sprite" parent="flowers"]
+position = Vector2( 950.492, 431.056 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower39" type="Sprite" parent="flowers"]
+position = Vector2( 942.492, 431.056 )
+texture = ExtResource( 24 )
+
+[node name="redflower40" type="Sprite" parent="flowers"]
+position = Vector2( 933.344, 432.979 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower41" type="Sprite" parent="flowers"]
+position = Vector2( 916.797, 431.056 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower42" type="Sprite" parent="flowers"]
+position = Vector2( 865.072, 431.724 )
+texture = ExtResource( 24 )
+
+[node name="redflower43" type="Sprite" parent="flowers"]
+position = Vector2( 856.395, 430.723 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower44" type="Sprite" parent="flowers"]
+position = Vector2( 846.718, 432.725 )
+texture = ExtResource( 24 )
+
+[node name="redflower45" type="Sprite" parent="flowers"]
+position = Vector2( 983.528, 430.112 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower46" type="Sprite" parent="flowers"]
+position = Vector2( 975.528, 430.112 )
+texture = ExtResource( 24 )
+
+[node name="redflower47" type="Sprite" parent="flowers"]
+position = Vector2( 966.38, 432.035 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower48" type="Sprite" parent="flowers"]
+position = Vector2( 949.832, 430.112 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower49" type="Sprite" parent="flowers"]
+position = Vector2( 898.107, 430.78 )
+texture = ExtResource( 24 )
+
+[node name="redflower50" type="Sprite" parent="flowers"]
+position = Vector2( 889.431, 429.779 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower51" type="Sprite" parent="flowers"]
+position = Vector2( 879.753, 431.781 )
+texture = ExtResource( 24 )
+
+[node name="redflower52" type="Sprite" parent="flowers"]
+position = Vector2( 950.492, 431.056 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower53" type="Sprite" parent="flowers"]
+position = Vector2( 942.492, 431.056 )
+texture = ExtResource( 24 )
+
+[node name="redflower54" type="Sprite" parent="flowers"]
+position = Vector2( 933.344, 432.979 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower55" type="Sprite" parent="flowers"]
+position = Vector2( 916.797, 431.056 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower56" type="Sprite" parent="flowers"]
+position = Vector2( 865.072, 431.724 )
+texture = ExtResource( 24 )
+
+[node name="redflower57" type="Sprite" parent="flowers"]
+position = Vector2( 856.395, 430.723 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower58" type="Sprite" parent="flowers"]
+position = Vector2( 846.718, 432.725 )
+texture = ExtResource( 24 )
+
+[node name="blueflower" type="Sprite" parent="flowers"]
+position = Vector2( -915.029, -46.259 )
+texture = ExtResource( 25 )
+
+[node name="blueflower2" type="Sprite" parent="flowers"]
+position = Vector2( -901.212, -44.9963 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower3" type="Sprite" parent="flowers"]
+position = Vector2( -873.482, -44.9963 )
+texture = ExtResource( 25 )
+
+[node name="blueflower4" type="Sprite" parent="flowers"]
+position = Vector2( -855.295, -44.7889 )
+scale = Vector2( 1, 0.8 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower5" type="Sprite" parent="flowers"]
+position = Vector2( -824.07, -48.559 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower6" type="Sprite" parent="flowers"]
+position = Vector2( -802.893, -48.1396 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower7" type="Sprite" parent="flowers"]
+position = Vector2( -784.039, -46.8047 )
+texture = ExtResource( 25 )
+
+[node name="blueflower8" type="Sprite" parent="flowers"]
+position = Vector2( -760.179, -46.3041 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower9" type="Sprite" parent="flowers"]
+position = Vector2( -737.82, -48.1396 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 25 )
+
+[node name="blueflower10" type="Sprite" parent="flowers"]
+position = Vector2( -840.269, -46.8047 )
+texture = ExtResource( 25 )
+
+[node name="blueflower42" type="Sprite" parent="flowers"]
+position = Vector2( -759.801, -422.4 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower43" type="Sprite" parent="flowers"]
+position = Vector2( -738.625, -421.981 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower51" type="Sprite" parent="flowers"]
+position = Vector2( -776, -420.646 )
+texture = ExtResource( 25 )
+
+[node name="blueflower11" type="Sprite" parent="flowers"]
+position = Vector2( -888.49, -47.639 )
+texture = ExtResource( 25 )
+
+[node name="blueflower12" type="Sprite" parent="flowers"]
+position = Vector2( -931.318, -49.6458 )
+scale = Vector2( 1, 1.4 )
+texture = ExtResource( 25 )
+
+[node name="blueflower13" type="Sprite" parent="flowers"]
+position = Vector2( -953.897, -46.6379 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower15" type="Sprite" parent="flowers"]
+position = Vector2( -429.96, 563.228 )
+texture = ExtResource( 25 )
+
+[node name="blueflower16" type="Sprite" parent="flowers"]
+position = Vector2( -416.142, 564.49 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower17" type="Sprite" parent="flowers"]
+position = Vector2( -388.413, 564.49 )
+texture = ExtResource( 25 )
+
+[node name="blueflower18" type="Sprite" parent="flowers"]
+position = Vector2( -370.225, 564.698 )
+scale = Vector2( 1, 0.8 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower19" type="Sprite" parent="flowers"]
+position = Vector2( -339.001, 560.928 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower20" type="Sprite" parent="flowers"]
+position = Vector2( -317.824, 561.347 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower21" type="Sprite" parent="flowers"]
+position = Vector2( -298.969, 562.682 )
+texture = ExtResource( 25 )
+
+[node name="blueflower22" type="Sprite" parent="flowers"]
+position = Vector2( -275.109, 563.183 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower23" type="Sprite" parent="flowers"]
+position = Vector2( -254.325, 559.457 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 25 )
+
+[node name="blueflower24" type="Sprite" parent="flowers"]
+position = Vector2( -355.199, 562.682 )
+texture = ExtResource( 25 )
+
+[node name="blueflower25" type="Sprite" parent="flowers"]
+position = Vector2( -403.42, 561.848 )
+texture = ExtResource( 25 )
+
+[node name="blueflower26" type="Sprite" parent="flowers"]
+position = Vector2( -446.248, 559.841 )
+scale = Vector2( 1, 1.4 )
+texture = ExtResource( 25 )
+
+[node name="blueflower27" type="Sprite" parent="flowers"]
+position = Vector2( -468.828, 562.849 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower28" type="Sprite" parent="flowers"]
+position = Vector2( -199.595, 562.853 )
+texture = ExtResource( 25 )
+
+[node name="blueflower29" type="Sprite" parent="flowers"]
+position = Vector2( -185.777, 564.116 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower30" type="Sprite" parent="flowers"]
+position = Vector2( -158.048, 564.116 )
+texture = ExtResource( 25 )
+
+[node name="blueflower31" type="Sprite" parent="flowers"]
+position = Vector2( -139.861, 564.323 )
+scale = Vector2( 1, 0.8 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower32" type="Sprite" parent="flowers"]
+position = Vector2( -108.636, 560.553 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower33" type="Sprite" parent="flowers"]
+position = Vector2( -87.459, 560.973 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower34" type="Sprite" parent="flowers"]
+position = Vector2( -68.6046, 562.307 )
+texture = ExtResource( 25 )
+
+[node name="blueflower35" type="Sprite" parent="flowers"]
+position = Vector2( -44.7442, 562.808 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower54" type="Sprite" parent="flowers"]
+position = Vector2( 35.4152, 562.433 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower36" type="Sprite" parent="flowers"]
+position = Vector2( -23.9605, 559.083 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower37" type="Sprite" parent="flowers"]
+position = Vector2( -124.835, 562.307 )
+texture = ExtResource( 25 )
+
+[node name="blueflower38" type="Sprite" parent="flowers"]
+position = Vector2( -173.056, 561.473 )
+texture = ExtResource( 25 )
+
+[node name="blueflower39" type="Sprite" parent="flowers"]
+position = Vector2( -215.883, 559.466 )
+scale = Vector2( 1, 1.4 )
+texture = ExtResource( 25 )
+
+[node name="blueflower40" type="Sprite" parent="flowers"]
+position = Vector2( -238.463, 562.474 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower41" type="Sprite" parent="flowers"]
+position = Vector2( -640, 496 )
+texture = ExtResource( 25 )
+
+[node name="blueflower44" type="Sprite" parent="flowers"]
+position = Vector2( -596.095, 565.822 )
+scale = Vector2( 1, 0.8 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower45" type="Sprite" parent="flowers"]
+position = Vector2( -564.87, 562.052 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower46" type="Sprite" parent="flowers"]
+position = Vector2( -543.694, 562.471 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower47" type="Sprite" parent="flowers"]
+position = Vector2( -524.839, 563.806 )
+texture = ExtResource( 25 )
+
+[node name="blueflower48" type="Sprite" parent="flowers"]
+position = Vector2( -500.979, 564.306 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower49" type="Sprite" parent="flowers"]
+position = Vector2( -480.195, 560.581 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 25 )
+
+[node name="blueflower50" type="Sprite" parent="flowers"]
+position = Vector2( -581.069, 563.806 )
+z_index = -1
+texture = ExtResource( 25 )
+
+[node name="blueflower52" type="Sprite" parent="flowers"]
+position = Vector2( -672.118, 560.965 )
+scale = Vector2( 1, 1.4 )
+z_index = -1
+texture = ExtResource( 25 )
+
+[node name="blueflower53" type="Sprite" parent="flowers"]
+position = Vector2( -694.698, 563.973 )
+z_index = -1
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower14" type="Sprite" parent="flowers"]
+position = Vector2( -971.584, -51.3075 )
+scale = Vector2( 1.3, 1.3 )
+z_index = -1
+texture = ExtResource( 25 )
+flip_h = true
 [connection signal="drumssignal" from="." to="Music/Drums" method="_on_Main_drumssignal"]
 [connection signal="harmonysignal" from="." to="Music/Harmony" method="_on_Main_harmonysignal"]
 [connection signal="melodysignal" from="." to="Music/Melody" method="_on_Main_melodysignal"]
 [connection signal="bluesignal" from="Switches/BlueThing" to="." method="_on_BlueThing_bluesignal"]
 [connection signal="greensignal" from="Switches/GreenThing" to="." method="_on_GreenThing_greensignal"]
 [connection signal="redsignal" from="Switches/RedThing" to="." method="_on_RedThing_redsignal"]
+[connection signal="testcam" from="Player" to="Player/PlayerCamera" method="_on_Player_testcam"]

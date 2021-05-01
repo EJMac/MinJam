@@ -111,10 +111,10 @@ func _process(_delta):
 
 func red_coin_hit():
 	red = true
-	melody = true
+	harmony = true
 func blue_coin_hit():
 	blue = true
-	harmony = true
+	melody = true
 func green_coin_hit():
 	green = true
 	drums = true
