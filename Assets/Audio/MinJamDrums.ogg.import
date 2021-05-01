@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MinJamDrums.ogg-dbe92ed7880acfda89586a1775841414.oggstr"
+
+[deps]
+
+source_file="res://Assets/Audio/MinJamDrums.ogg"
+dest_files=[ "res://.import/MinJamDrums.ogg-dbe92ed7880acfda89586a1775841414.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

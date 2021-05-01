@@ -1,17 +1,25 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Scenes/RedThing.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Floor.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Red.shader" type="Shader" id=3]
+[ext_resource path="res://Shaders/Red.shader" type="Shader" id=3]
 [ext_resource path="res://Assets/Sprites/icon.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/Blue.shader" type="Shader" id=5]
-[ext_resource path="res://Scenes/RedBlue.shader" type="Shader" id=6]
-[ext_resource path="res://Scenes/Green.shader" type="Shader" id=7]
-[ext_resource path="res://Scenes/Main.gd" type="Script" id=8]
-[ext_resource path="res://Scenes/BlueGreen.shader" type="Shader" id=9]
-[ext_resource path="res://Scenes/RedGreen.shader" type="Shader" id=10]
+[ext_resource path="res://Shaders/Blue.shader" type="Shader" id=5]
+[ext_resource path="res://Shaders/RedBlue.shader" type="Shader" id=6]
+[ext_resource path="res://Shaders/Green.shader" type="Shader" id=7]
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=8]
+[ext_resource path="res://Shaders/BlueGreen.shader" type="Shader" id=9]
+[ext_resource path="res://RedGreen.shader" type="Shader" id=10]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Camera2D.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/BlueThing.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Audio/MinJamHarmony.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Assets/Audio/MinJamDrums.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Assets/Audio/MinJamMelodyFinal.ogg" type="AudioStream" id=16]
+[ext_resource path="res://Scenes/GreenThing.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Melody.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/Harmony.gd" type="Script" id=19]
+[ext_resource path="res://Scenes/Drums.gd" type="Script" id=20]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 9 )
@@ -217,6 +225,45 @@ limit_bottom = 600
 limit_smoothed = true
 script = ExtResource( 12 )
 
-[node name="RedThing" parent="." instance=ExtResource( 1 )]
-position = Vector2( -641.849, 474.171 )
-[connection signal="redsignal" from="RedThing" to="." method="_on_RedThing_redsignal"]
+[node name="Switches" type="Node" parent="."]
+
+[node name="BlueThing" parent="Switches" instance=ExtResource( 13 )]
+position = Vector2( -471.85, 447.444 )
+
+[node name="GreenThing" parent="Switches" instance=ExtResource( 17 )]
+position = Vector2( -145.973, 516.216 )
+
+[node name="RedThing" parent="Switches" instance=ExtResource( 1 )]
+position = Vector2( -643.384, 484.216 )
+
+[node name="Music" type="Node" parent="."]
+
+[node name="Melody" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 16 )
+autoplay = true
+bus = "MelodyBus"
+script = ExtResource( 18 )
+
+[node name="MelodyTween" type="Tween" parent="Music/Melody"]
+
+[node name="Harmony" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 14 )
+autoplay = true
+bus = "HarmonyBus"
+script = ExtResource( 19 )
+
+[node name="HarmonyTween" type="Tween" parent="Music/Harmony"]
+
+[node name="Drums" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 15 )
+autoplay = true
+bus = "DrumsBus"
+script = ExtResource( 20 )
+
+[node name="DrumsTween" type="Tween" parent="Music/Drums"]
+[connection signal="drumssignal" from="." to="Music/Drums" method="_on_Main_drumssignal"]
+[connection signal="harmonysignal" from="." to="Music/Harmony" method="_on_Main_harmonysignal"]
+[connection signal="melodysignal" from="." to="Music/Melody" method="_on_Main_melodysignal"]
+[connection signal="bluesignal" from="Switches/BlueThing" to="." method="_on_BlueThing_bluesignal"]
+[connection signal="greensignal" from="Switches/GreenThing" to="." method="_on_GreenThing_greensignal"]
+[connection signal="redsignal" from="Switches/RedThing" to="." method="_on_RedThing_redsignal"]
