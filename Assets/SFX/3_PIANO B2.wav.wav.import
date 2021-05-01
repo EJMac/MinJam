@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/3_PIANO B2.wav.wav-363144c9ef287c01cc64eee5e455c325.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/3_PIANO B2.wav.wav"
+dest_files=[ "res://.import/3_PIANO B2.wav.wav-363144c9ef287c01cc64eee5e455c325.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

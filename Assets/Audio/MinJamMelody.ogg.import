@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MinJamMelody.ogg-1272d90183129d36b3105e9a8fb6abe5.oggstr"
+
+[deps]
+
+source_file="res://Assets/Audio/MinJamMelody.ogg"
+dest_files=[ "res://.import/MinJamMelody.ogg-1272d90183129d36b3105e9a8fb6abe5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

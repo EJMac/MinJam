@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/7_Kick power.wav-b86f77d7da6c47b199b10159eb9d6b00.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/7_Kick power.wav"
+dest_files=[ "res://.import/7_Kick power.wav-b86f77d7da6c47b199b10159eb9d6b00.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
