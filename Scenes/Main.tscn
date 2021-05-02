@@ -69,121 +69,6 @@ load_path = "res://.import/icon.png-1ada42475fe106c59fb9885a73678c1a.stex"
 [node name="Main" type="Node2D"]
 script = ExtResource( 8 )
 
-[node name="background" type="ParallaxBackground" parent="."]
-layer = -1
-
-[node name="staticSky" type="ParallaxLayer" parent="background"]
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
-
-[node name="SkySprite" type="Sprite" parent="background/staticSky"]
-z_index = -2
-texture = ExtResource( 21 )
-
-[node name="Mountains" type="ParallaxLayer" parent="background"]
-motion_scale = Vector2( 1.05, 1 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
-
-[node name="MountainSprite" type="Sprite" parent="background/Mountains"]
-position = Vector2( 554.153, -40.1799 )
-texture = ExtResource( 22 )
-offset = Vector2( 0, 400 )
-
-[node name="MountainSprite4" type="Sprite" parent="background/Mountains"]
-position = Vector2( 1193.53, -41.8617 )
-texture = ExtResource( 22 )
-offset = Vector2( 0, 400 )
-
-[node name="MountainSprite2" type="Sprite" parent="background/Mountains"]
-position = Vector2( -84.8252, -38.8094 )
-texture = ExtResource( 22 )
-offset = Vector2( 0, 400 )
-
-[node name="MountainSprite3" type="Sprite" parent="background/Mountains"]
-position = Vector2( -724.774, -37.7976 )
-texture = ExtResource( 22 )
-offset = Vector2( 0, 400 )
-
-[node name="MountainSprite5" type="Sprite" parent="background/Mountains"]
-position = Vector2( -1365, -37.5141 )
-texture = ExtResource( 22 )
-offset = Vector2( 0, 400 )
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="background"]
-z_index = -1
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Sprite" type="Sprite" parent="background/ParallaxLayer"]
-z_index = -1
-texture = ExtResource( 26 )
-
-[node name="Music" type="Node" parent="."]
-
-[node name="Melody" type="AudioStreamPlayer" parent="Music"]
-stream = ExtResource( 16 )
-autoplay = true
-bus = "MelodyBus"
-script = ExtResource( 18 )
-
-[node name="MelodyTween" type="Tween" parent="Music/Melody"]
-
-[node name="Harmony" type="AudioStreamPlayer" parent="Music"]
-stream = ExtResource( 14 )
-autoplay = true
-bus = "HarmonyBus"
-script = ExtResource( 19 )
-
-[node name="HarmonyTween" type="Tween" parent="Music/Harmony"]
-
-[node name="Drums" type="AudioStreamPlayer" parent="Music"]
-stream = ExtResource( 15 )
-autoplay = true
-bus = "DrumsBus"
-script = ExtResource( 20 )
-
-[node name="DrumsTween" type="Tween" parent="Music/Drums"]
-
-[node name="Switches" type="Node" parent="."]
-
-[node name="BlueThing" parent="Switches" instance=ExtResource( 13 )]
-show_behind_parent = true
-position = Vector2( -880, -168 )
-z_index = 2
-z_as_relative = false
-
-[node name="GreenThing" parent="Switches" instance=ExtResource( 17 )]
-position = Vector2( 832, -304 )
-z_index = 2
-
-[node name="RedThing" parent="Switches" instance=ExtResource( 1 )]
-position = Vector2( 864, 352 )
-z_index = 2
-
-[node name="Player" parent="." instance=ExtResource( 11 )]
-position = Vector2( -912, 528 )
-
-[node name="PlayerCamera" type="Camera2D" parent="Player"]
-visible = false
-position = Vector2( 3.15405, -6.10352e-05 )
-scale = Vector2( 10, 10 )
-current = true
-zoom = Vector2( 0.4, 0.4 )
-limit_left = -1024
-limit_top = -600
-limit_right = 1024
-limit_bottom = 600
-limit_smoothed = true
-script = ExtResource( 12 )
-
-[node name="TweenCam" type="Tween" parent="Player/PlayerCamera"]
-
 [node name="Shaders" type="Node" parent="."]
 
 [node name="BlueGreenShader" type="Sprite" parent="Shaders"]
@@ -248,6 +133,127 @@ scale = Vector2( 38.9364, 25.7134 )
 z_index = 1
 texture = SubResource( 9 )
 script = SubResource( 10 )
+
+[node name="background" type="ParallaxBackground" parent="."]
+layer = -1
+
+[node name="staticSky" type="ParallaxLayer" parent="background"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="SkySprite" type="Sprite" parent="background/staticSky"]
+z_index = -2
+texture = ExtResource( 21 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Mountains" type="ParallaxLayer" parent="background"]
+motion_scale = Vector2( 1.05, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="MountainSprite" type="Sprite" parent="background/Mountains"]
+position = Vector2( 554.153, -40.1799 )
+texture = ExtResource( 22 )
+offset = Vector2( 0, 400 )
+
+[node name="MountainSprite4" type="Sprite" parent="background/Mountains"]
+position = Vector2( 1193.53, -41.8617 )
+texture = ExtResource( 22 )
+offset = Vector2( 0, 400 )
+
+[node name="MountainSprite2" type="Sprite" parent="background/Mountains"]
+position = Vector2( -84.8252, -38.8094 )
+texture = ExtResource( 22 )
+offset = Vector2( 0, 400 )
+
+[node name="MountainSprite3" type="Sprite" parent="background/Mountains"]
+position = Vector2( -724.774, -37.7976 )
+texture = ExtResource( 22 )
+offset = Vector2( 0, 400 )
+
+[node name="MountainSprite5" type="Sprite" parent="background/Mountains"]
+position = Vector2( -1365, -37.5141 )
+texture = ExtResource( 22 )
+offset = Vector2( 0, 400 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="background"]
+z_index = -1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="background/ParallaxLayer"]
+z_index = -1
+texture = ExtResource( 26 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Music" type="Node" parent="."]
+
+[node name="Melody" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 16 )
+autoplay = true
+bus = "MelodyBus"
+script = ExtResource( 18 )
+
+[node name="MelodyTween" type="Tween" parent="Music/Melody"]
+
+[node name="Harmony" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 14 )
+autoplay = true
+bus = "HarmonyBus"
+script = ExtResource( 19 )
+
+[node name="HarmonyTween" type="Tween" parent="Music/Harmony"]
+
+[node name="Drums" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 15 )
+autoplay = true
+bus = "DrumsBus"
+script = ExtResource( 20 )
+
+[node name="DrumsTween" type="Tween" parent="Music/Drums"]
+
+[node name="Switches" type="Node" parent="."]
+
+[node name="BlueThing" parent="Switches" instance=ExtResource( 13 )]
+show_behind_parent = true
+position = Vector2( -882.637, -193.351 )
+z_index = 2
+z_as_relative = false
+
+[node name="GreenThing" parent="Switches" instance=ExtResource( 17 )]
+position = Vector2( 206.301, -143.728 )
+z_index = 2
+
+[node name="RedThing" parent="Switches" instance=ExtResource( 1 )]
+position = Vector2( 850.658, -271.68 )
+z_index = 2
+
+[node name="Player" parent="." instance=ExtResource( 11 )]
+position = Vector2( -872, 560 )
+
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
+visible = false
+position = Vector2( 3.15405, -6.10352e-05 )
+scale = Vector2( 10, 10 )
+current = true
+zoom = Vector2( 0.4, 0.4 )
+limit_left = -1024
+limit_top = -600
+limit_right = 1024
+limit_bottom = 600
+limit_smoothed = true
+script = ExtResource( 12 )
+
+[node name="TweenCam" type="Tween" parent="Player/PlayerCamera"]
 
 [node name="Floors" type="Node" parent="."]
 
@@ -548,6 +554,114 @@ position = Vector2( -448, 208 )
 [node name="Floor79" parent="Floors" instance=ExtResource( 2 )]
 position = Vector2( -416, 208 )
 
+[node name="Floor174" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 26.9228, 424 )
+
+[node name="Floor175" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 58.9228, 424 )
+
+[node name="Floor176" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 90.9228, 424 )
+
+[node name="Floor177" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -112, 376 )
+
+[node name="Floor178" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -80, 376 )
+
+[node name="Floor179" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -48, 376 )
+
+[node name="Floor180" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -224, 336 )
+
+[node name="Floor181" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -192, 336 )
+
+[node name="Floor182" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -160, 336 )
+
+[node name="Floor183" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -296, 288 )
+
+[node name="Floor184" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -264, 288 )
+
+[node name="Floor185" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -232, 288 )
+
+[node name="Floor186" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -160, 240 )
+
+[node name="Floor187" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -128, 240 )
+
+[node name="Floor188" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -96, 240 )
+
+[node name="Floor195" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 184.392, 101.621 )
+
+[node name="Floor197" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 216.392, 101.621 )
+
+[node name="Floor204" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 245.719, 102.512 )
+
+[node name="Floor206" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 296.515, 54.4573 )
+
+[node name="Floor207" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 328.515, 54.4573 )
+
+[node name="Floor208" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 360.515, 54.4573 )
+
+[node name="Floor209" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 64.2531, -57.6692 )
+
+[node name="Floor210" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 96.2531, -57.6692 )
+
+[node name="Floor211" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 128.253, -57.6692 )
+
+[node name="Floor215" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 176.38, -107.058 )
+
+[node name="Floor216" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 208.38, -107.058 )
+
+[node name="Floor217" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 240.38, -107.058 )
+
+[node name="Floor212" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 180.384, -6.94531 )
+
+[node name="Floor213" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 212.384, -6.94531 )
+
+[node name="Floor214" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 244.384, -6.94531 )
+
+[node name="Floor189" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -33.8419, 202.832 )
+
+[node name="Floor190" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( -1.84186, 202.832 )
+
+[node name="Floor191" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 30.1581, 202.832 )
+
+[node name="Floor192" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 88.5407, 154.832 )
+
+[node name="Floor193" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 120.541, 154.832 )
+
+[node name="Floor194" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 152.541, 154.832 )
+
 [node name="Floor90" parent="Floors" instance=ExtResource( 2 )]
 position = Vector2( 976, 456 )
 
@@ -761,8 +875,29 @@ position = Vector2( 912, -40 )
 [node name="Floor114" parent="Floors" instance=ExtResource( 2 )]
 position = Vector2( 912, 56 )
 
-[node name="Floor115" parent="Floors" instance=ExtResource( 2 )]
-position = Vector2( 912, 152 )
+[node name="Floor196" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 839.919, 301.385 )
+
+[node name="Floor198" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 839.919, 5.38455 )
+
+[node name="Floor199" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 839.919, 101.385 )
+
+[node name="Floor200" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 839.919, 197.385 )
+
+[node name="Floor201" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 765.974, 254.167 )
+
+[node name="Floor202" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 765.974, -137.833 )
+
+[node name="Floor203" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 765.974, -41.8331 )
+
+[node name="Floor205" parent="Floors" instance=ExtResource( 2 )]
+position = Vector2( 765.974, 150.167 )
 
 [node name="Walls" type="Node" parent="."]
 
@@ -846,6 +981,24 @@ position = Vector2( -1000, 136 )
 
 [node name="Wall24" parent="Walls" instance=ExtResource( 23 )]
 position = Vector2( -1000, 104 )
+
+[node name="Wall252" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -744, 8 )
+
+[node name="Wall253" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -712, 40 )
+
+[node name="Wall254" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -680, 72 )
+
+[node name="Wall255" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -648, 104 )
+
+[node name="Wall256" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -616, 136 )
+
+[node name="Wall257" parent="Walls" instance=ExtResource( 23 )]
+position = Vector2( -584, 168 )
 
 [node name="Wall25" parent="Walls" instance=ExtResource( 23 )]
 position = Vector2( -1000, 72 )
@@ -2289,6 +2442,487 @@ flip_h = true
 position = Vector2( -124.835, 562.307 )
 texture = ExtResource( 25 )
 
+[node name="redflower110" type="Sprite" parent="flowers"]
+position = Vector2( 373.124, 30.8453 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower115" type="Sprite" parent="flowers"]
+position = Vector2( 356.577, 28.9223 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower116" type="Sprite" parent="flowers"]
+position = Vector2( 304.852, 29.5893 )
+texture = ExtResource( 24 )
+
+[node name="redflower117" type="Sprite" parent="flowers"]
+position = Vector2( 296.175, 28.5883 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower123" type="Sprite" parent="flowers"]
+position = Vector2( 286.498, 30.5903 )
+texture = ExtResource( 24 )
+
+[node name="redflower124" type="Sprite" parent="flowers"]
+position = Vector2( 357.237, 29.8663 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower125" type="Sprite" parent="flowers"]
+position = Vector2( 349.237, 29.8663 )
+texture = ExtResource( 24 )
+
+[node name="redflower126" type="Sprite" parent="flowers"]
+position = Vector2( 340.089, 31.7893 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower127" type="Sprite" parent="flowers"]
+position = Vector2( 323.541, 29.8663 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower128" type="Sprite" parent="flowers"]
+position = Vector2( 246.461, 77.0489 )
+texture = ExtResource( 24 )
+
+[node name="redflower129" type="Sprite" parent="flowers"]
+position = Vector2( 237.785, 76.0479 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower130" type="Sprite" parent="flowers"]
+position = Vector2( 218.078, 79.0509 )
+texture = ExtResource( 24 )
+
+[node name="redflower131" type="Sprite" parent="flowers"]
+position = Vector2( 356.577, 28.9223 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower132" type="Sprite" parent="flowers"]
+position = Vector2( 304.852, 29.5893 )
+texture = ExtResource( 24 )
+
+[node name="redflower133" type="Sprite" parent="flowers"]
+position = Vector2( 205.504, 77.4979 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower134" type="Sprite" parent="flowers"]
+position = Vector2( 197.504, 77.4979 )
+texture = ExtResource( 24 )
+
+[node name="redflower135" type="Sprite" parent="flowers"]
+position = Vector2( 188.356, 79.4209 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="blueflower55" type="Sprite" parent="flowers"]
+position = Vector2( 189.785, 81.4179 )
+scale = Vector2( 1, 0.8 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower56" type="Sprite" parent="flowers"]
+position = Vector2( 221.01, 77.6479 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower57" type="Sprite" parent="flowers"]
+position = Vector2( 252.216, 77.0669 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower58" type="Sprite" parent="flowers"]
+position = Vector2( 296.425, 31.8853 )
+texture = ExtResource( 25 )
+
+[node name="blueflower59" type="Sprite" parent="flowers"]
+position = Vector2( 320.286, 32.3863 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower60" type="Sprite" parent="flowers"]
+position = Vector2( 341.069, 28.6613 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="redflower136" type="Sprite" parent="flowers"]
+position = Vector2( 373.124, 30.8453 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower137" type="Sprite" parent="flowers"]
+position = Vector2( 356.577, 28.9223 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower138" type="Sprite" parent="flowers"]
+position = Vector2( 304.852, 29.5893 )
+texture = ExtResource( 24 )
+
+[node name="redflower139" type="Sprite" parent="flowers"]
+position = Vector2( 296.175, 28.5883 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower140" type="Sprite" parent="flowers"]
+position = Vector2( 286.498, 30.5903 )
+texture = ExtResource( 24 )
+
+[node name="redflower141" type="Sprite" parent="flowers"]
+position = Vector2( 357.237, 29.8663 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower142" type="Sprite" parent="flowers"]
+position = Vector2( 349.237, 29.8663 )
+texture = ExtResource( 24 )
+
+[node name="redflower143" type="Sprite" parent="flowers"]
+position = Vector2( 340.089, 31.7893 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="redflower144" type="Sprite" parent="flowers"]
+position = Vector2( 323.541, 29.8663 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower145" type="Sprite" parent="flowers"]
+position = Vector2( 356.577, 28.9223 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 24 )
+flip_h = true
+
+[node name="redflower146" type="Sprite" parent="flowers"]
+position = Vector2( 304.852, 29.5893 )
+texture = ExtResource( 24 )
+
+[node name="blueflower62" type="Sprite" parent="flowers"]
+position = Vector2( 296.425, 31.8853 )
+texture = ExtResource( 25 )
+
+[node name="blueflower63" type="Sprite" parent="flowers"]
+position = Vector2( 320.286, 32.3863 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="blueflower64" type="Sprite" parent="flowers"]
+position = Vector2( 341.069, 28.6613 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 25 )
+flip_h = true
+
+[node name="redflower153" type="Sprite" parent="flowers"]
+position = Vector2( 260.022, -137.419 )
+rotation = -6.28319
+scale = Vector2( -1, 0.8 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower154" type="Sprite" parent="flowers"]
+position = Vector2( 243.474, -139.342 )
+rotation = -6.28319
+scale = Vector2( -1, 1.2 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower155" type="Sprite" parent="flowers"]
+position = Vector2( 191.749, -138.675 )
+rotation = -6.28319
+scale = Vector2( -1, 1 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower156" type="Sprite" parent="flowers"]
+position = Vector2( 183.073, -139.676 )
+rotation = -6.28319
+scale = Vector2( -1, 1 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower157" type="Sprite" parent="flowers"]
+position = Vector2( 173.395, -137.674 )
+rotation = -6.28319
+scale = Vector2( -1, 1 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower158" type="Sprite" parent="flowers"]
+position = Vector2( 244.134, -138.398 )
+rotation = -6.28319
+scale = Vector2( -1, 1.1 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower159" type="Sprite" parent="flowers"]
+position = Vector2( 236.134, -138.398 )
+rotation = -6.28319
+scale = Vector2( -1, 1 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower160" type="Sprite" parent="flowers"]
+position = Vector2( 226.986, -136.475 )
+rotation = -6.28319
+scale = Vector2( -1, 0.8 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower161" type="Sprite" parent="flowers"]
+position = Vector2( 210.439, -138.398 )
+rotation = -6.28319
+scale = Vector2( -1, 1.2 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower162" type="Sprite" parent="flowers"]
+position = Vector2( 243.474, -139.342 )
+rotation = -6.28319
+scale = Vector2( -1, 1.2 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower163" type="Sprite" parent="flowers"]
+position = Vector2( 191.749, -138.675 )
+rotation = -6.28319
+scale = Vector2( -1, 1 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="blueflower69" type="Sprite" parent="flowers"]
+position = Vector2( 183.323, -136.379 )
+rotation = -6.28319
+scale = Vector2( -1, 1 )
+texture = ExtResource( 25 )
+centered = false
+
+[node name="blueflower70" type="Sprite" parent="flowers"]
+position = Vector2( 207.183, -135.878 )
+rotation = -6.28319
+scale = Vector2( -1, 0.9 )
+texture = ExtResource( 25 )
+centered = false
+
+[node name="blueflower71" type="Sprite" parent="flowers"]
+position = Vector2( 227.967, -139.603 )
+rotation = -6.28319
+scale = Vector2( -1, 1.1 )
+texture = ExtResource( 25 )
+centered = false
+
+[node name="redflower164" type="Sprite" parent="flowers"]
+position = Vector2( 260.022, -137.419 )
+rotation = -6.28319
+scale = Vector2( -1, 0.8 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower165" type="Sprite" parent="flowers"]
+position = Vector2( 243.474, -139.342 )
+rotation = -6.28319
+scale = Vector2( -1, 1.2 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower166" type="Sprite" parent="flowers"]
+position = Vector2( 191.749, -138.675 )
+rotation = -6.28319
+scale = Vector2( -1, 1 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower167" type="Sprite" parent="flowers"]
+position = Vector2( 183.073, -139.676 )
+rotation = -6.28319
+scale = Vector2( -1, 1 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower168" type="Sprite" parent="flowers"]
+position = Vector2( 173.395, -137.674 )
+rotation = -6.28319
+scale = Vector2( -1, 1 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower169" type="Sprite" parent="flowers"]
+position = Vector2( 244.134, -138.398 )
+rotation = -6.28319
+scale = Vector2( -1, 1.1 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower170" type="Sprite" parent="flowers"]
+position = Vector2( 236.134, -138.398 )
+rotation = -6.28319
+scale = Vector2( -1, 1 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower171" type="Sprite" parent="flowers"]
+position = Vector2( 226.986, -136.475 )
+rotation = -6.28319
+scale = Vector2( -1, 0.8 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower172" type="Sprite" parent="flowers"]
+position = Vector2( 210.439, -138.398 )
+rotation = -6.28319
+scale = Vector2( -1, 1.2 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower173" type="Sprite" parent="flowers"]
+position = Vector2( 243.474, -139.342 )
+rotation = -6.28319
+scale = Vector2( -1, 1.2 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="redflower174" type="Sprite" parent="flowers"]
+position = Vector2( 191.749, -138.675 )
+rotation = -6.28319
+scale = Vector2( -1, 1 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="blueflower72" type="Sprite" parent="flowers"]
+position = Vector2( 183.323, -136.379 )
+rotation = -6.28319
+scale = Vector2( -1, 1 )
+texture = ExtResource( 25 )
+centered = false
+
+[node name="blueflower73" type="Sprite" parent="flowers"]
+position = Vector2( 207.183, -135.878 )
+rotation = -6.28319
+scale = Vector2( -1, 0.9 )
+texture = ExtResource( 25 )
+centered = false
+
+[node name="blueflower74" type="Sprite" parent="flowers"]
+position = Vector2( 227.967, -139.603 )
+rotation = -6.28319
+scale = Vector2( -1, 1.1 )
+texture = ExtResource( 25 )
+centered = false
+
+[node name="blueflower61" type="Sprite" parent="flowers"]
+position = Vector2( 204.811, 79.4019 )
+texture = ExtResource( 25 )
+
+[node name="redflower147" type="Sprite" parent="flowers"]
+position = Vector2( 126.213, -82.7214 )
+texture = ExtResource( 24 )
+
+[node name="redflower148" type="Sprite" parent="flowers"]
+position = Vector2( 117.537, -83.7225 )
+texture = ExtResource( 24 )
+
+[node name="redflower149" type="Sprite" parent="flowers"]
+position = Vector2( 97.8299, -80.7195 )
+texture = ExtResource( 24 )
+
+[node name="redflower150" type="Sprite" parent="flowers"]
+position = Vector2( 85.2559, -82.2724 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 24 )
+
+[node name="redflower151" type="Sprite" parent="flowers"]
+position = Vector2( 77.2559, -82.2724 )
+texture = ExtResource( 24 )
+
+[node name="redflower152" type="Sprite" parent="flowers"]
+position = Vector2( 68.1078, -80.3494 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="blueflower65" type="Sprite" parent="flowers"]
+position = Vector2( 69.5369, -78.3525 )
+scale = Vector2( 1, 0.8 )
+texture = ExtResource( 25 )
+
+[node name="blueflower66" type="Sprite" parent="flowers"]
+position = Vector2( 100.762, -82.1225 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 25 )
+
+[node name="blueflower67" type="Sprite" parent="flowers"]
+position = Vector2( 131.968, -82.7034 )
+texture = ExtResource( 25 )
+
+[node name="blueflower68" type="Sprite" parent="flowers"]
+position = Vector2( 84.5629, -80.3684 )
+texture = ExtResource( 25 )
+
+[node name="redflower175" type="Sprite" parent="flowers"]
+position = Vector2( 238.713, -29.7214 )
+scale = Vector2( -0.9, 1 )
+texture = ExtResource( 24 )
+
+[node name="redflower176" type="Sprite" parent="flowers"]
+position = Vector2( 230.037, -30.7225 )
+scale = Vector2( -0.9, 1 )
+texture = ExtResource( 24 )
+
+[node name="redflower177" type="Sprite" parent="flowers"]
+position = Vector2( 210.33, -27.7195 )
+scale = Vector2( -0.9, 1 )
+texture = ExtResource( 24 )
+
+[node name="redflower178" type="Sprite" parent="flowers"]
+position = Vector2( 197.756, -29.2724 )
+scale = Vector2( -0.9, 1.1 )
+texture = ExtResource( 24 )
+
+[node name="redflower179" type="Sprite" parent="flowers"]
+position = Vector2( 189.756, -29.2724 )
+scale = Vector2( -0.9, 1 )
+texture = ExtResource( 24 )
+
+[node name="redflower180" type="Sprite" parent="flowers"]
+position = Vector2( 180.608, -27.3494 )
+scale = Vector2( -0.9, 0.8 )
+texture = ExtResource( 24 )
+
+[node name="blueflower75" type="Sprite" parent="flowers"]
+position = Vector2( 182.037, -25.3525 )
+scale = Vector2( -0.9, 0.8 )
+texture = ExtResource( 25 )
+
+[node name="blueflower76" type="Sprite" parent="flowers"]
+position = Vector2( 213.262, -29.1225 )
+scale = Vector2( -0.9, 1.2 )
+texture = ExtResource( 25 )
+
+[node name="blueflower77" type="Sprite" parent="flowers"]
+position = Vector2( 244.468, -29.7034 )
+scale = Vector2( -0.9, 1 )
+texture = ExtResource( 25 )
+
+[node name="blueflower78" type="Sprite" parent="flowers"]
+position = Vector2( 197.063, -27.3684 )
+scale = Vector2( -0.9, 1 )
+texture = ExtResource( 25 )
+
 [node name="blueflower38" type="Sprite" parent="flowers"]
 position = Vector2( -173.056, 561.473 )
 texture = ExtResource( 25 )
@@ -2362,6 +2996,7 @@ scale = Vector2( 1.3, 1.3 )
 z_index = -1
 texture = ExtResource( 25 )
 flip_h = true
+[connection signal="allthree" from="." to="Player/PlayerCamera" method="_on_Main_allthree"]
 [connection signal="drumssignal" from="." to="Music/Drums" method="_on_Main_drumssignal"]
 [connection signal="harmonysignal" from="." to="Music/Harmony" method="_on_Main_harmonysignal"]
 [connection signal="melodysignal" from="." to="Music/Melody" method="_on_Main_melodysignal"]
@@ -2369,3 +3004,7 @@ flip_h = true
 [connection signal="greensignal" from="Switches/GreenThing" to="." method="_on_GreenThing_greensignal"]
 [connection signal="redsignal" from="Switches/RedThing" to="." method="_on_RedThing_redsignal"]
 [connection signal="testcam" from="Player" to="Player/PlayerCamera" method="_on_Player_testcam"]
+[connection signal="musicfade" from="Player/PlayerCamera" to="Music/Harmony" method="_on_PlayerCamera_musicfade"]
+[connection signal="musicfade" from="Player/PlayerCamera" to="Music/Melody" method="_on_PlayerCamera_musicfade"]
+[connection signal="musicfade" from="Player/PlayerCamera" to="Music/Drums" method="_on_PlayerCamera_musicfade"]
+[connection signal="tween_completed" from="Player/PlayerCamera/TweenCam" to="Player/PlayerCamera" method="_on_TweenCam_tween_completed"]

@@ -10,7 +10,7 @@ var drums = false
 
 #var harmony_bus = AudioServer.get_bus_index("HarmonyBus")
 #var drums_bus = AudioServer.get_bus_index("DrumsBus")
-
+signal allthree
 signal melodysignal
 signal harmonysignal
 signal drumssignal
@@ -108,6 +108,7 @@ func _process(_delta):
 		$Shaders/RedBlueShader.visible = false
 		$Shaders/RedGreenShader.visible = false
 		$Shaders/BlueGreenShader.visible = false
+		emit_signal("allthree")
 
 func red_coin_hit():
 	red = true

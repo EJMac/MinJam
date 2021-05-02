@@ -3,11 +3,12 @@ extends AudioStreamPlayer
 
 
 onready var tween_h = get_node("HarmonyTween") 
-export var transition_duration = 4
-export var transition_type = 0
+export var transition_duration = 2
+export var transition_type = 1
+export var fadeoutlen = 25
 onready  var harmony_bus = AudioServer.get_bus_index("HarmonyBus")
-var startvol = -80
-var goal = 80.0
+var startvol = -60
+var goal = 60.0
 
 
 func _ready():
@@ -15,9 +16,17 @@ func _ready():
 
 func fade_in():
 
-	tween_h.interpolate_property(self, "volume_db", null, goal, transition_duration, transition_type, 2, 0)
+	tween_h.interpolate_property(self, "volume_db", null, goal, transition_duration, transition_type, 1, 0)
 	tween_h.start()
+	
+func fade_out():
+	
+	tween_h.interpolate_property(self, "volume_db", null, startvol, fadeoutlen, transition_type, 1, 0)
+	tween_h.start()
+	
 
 func _on_Main_harmonysignal():
 	fade_in()
-	print("Harmony")
+	
+func _on_PlayerCamera_musicfade():
+	fade_out()

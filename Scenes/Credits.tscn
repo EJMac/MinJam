@@ -46,14 +46,14 @@ text = "
 
 	Credits:
 
-	Development, Design, Art, Music, etc... - Ethan McIntyre (EJMac on itch.io)
+	Development, Design, Art, Music, etc... 
+	- Ethan McIntyre ( itch.io: EJMac, twitter:  @EJGameDev1)
 
-
-
-
-	While you're here, I'm part of Lowercase Games Studio!
-	Keep an eye on this site:  https://lowercase.games
-	and check out our itch.io page:  https://lower-case-games.itch.io/"
+	Try collecting the colors in different orders.
+	
+	
+	Check out lower-case-games.itch.io
+"
 wrap_enabled = true
 
 [node name="ReturntoTitle" type="Button" parent="VBoxContainer"]
